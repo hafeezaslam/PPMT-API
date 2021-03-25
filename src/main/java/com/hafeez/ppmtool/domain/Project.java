@@ -35,7 +35,7 @@ public class Project {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updatedAt;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
     @JsonIgnore
     private List<ProjectTask> projectTasks = new ArrayList<>();
 
