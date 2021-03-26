@@ -31,7 +31,7 @@ public class ProjectTask {
     @Column(name = "priority")
     private Integer priority;
 
-    @JsonFormat(pattern = "YYYY-MM-DD")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "due_date")
     private Date dueDate;
 
@@ -45,9 +45,11 @@ public class ProjectTask {
     @Column(updatable = false)
     private String projectIdentifier;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "created_at")
     private Date createdAt;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "updated_at")
     private Date updatedAt;
 
