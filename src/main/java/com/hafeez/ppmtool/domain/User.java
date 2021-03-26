@@ -22,23 +22,23 @@ import java.util.List;
 @Entity
 public class User implements UserDetails {
 
+    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
+    @Column(name = "username", unique = true)
     @Email(message = "username needs to be an email")
     @NotBlank(message = "username is required")
-    @Column(name = "username", unique = true)
     private String username;
 
-    @NotBlank(message = "Please enter your full name")
     @Column(name = "full_name")
+    @NotBlank(message = "Please enter your full name")
     private String fullName;
 
+    @Column(name = "password")
     @NotBlank(message = "Password field is required")
     @Size(min = 6, message = "Password must be at least 6 characters")
-    @Column(name = "password")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
@@ -46,12 +46,12 @@ public class User implements UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String confirmPassword;
 
+    @Column(name = "created_at")
     @JsonFormat(pattern = "YY-MM-DD")
-    @Column(name = "create_at")
     private Date createAt;
 
+    @Column(name = "updated_at")
     @JsonFormat(pattern = "YY-MM-DD")
-    @Column(name = "update_at")
     private Date updateAt;
 
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true)

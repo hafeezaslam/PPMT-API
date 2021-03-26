@@ -13,41 +13,54 @@ import java.util.List;
 @Entity
 public class Project {
 
-
+    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "project_name")
     @NotBlank(message = "Project name is required")
     private String projectName;
+
+    @Column(updatable = false, unique = true)
     @NotBlank(message = "Project identifier is required")
     @Size(min = 4, max = 5, message = "Please use 4 to 5 characters")
-    @Column(updatable = false, unique = true)
     private String projectIdentifier;
+
+    @Column(name = "description")
     @NotBlank(message = "Project description is required")
     private String description;
 
     @Column(name = "PT_sequence")
     private Integer PTSequence = 0;
 
+    @Column(name = "project_leader")
+    private String projectLeader;
+
+    @Column(name = "start_date")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
+
+    @Column(name = "end_date")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     @JsonFormat(pattern = "yyyy-MM-dd")
+
+    @Column(name = "created_at")
     private Date createdAt;
     @JsonFormat(pattern = "yyyy-MM-dd")
+
+    @Column(name = "updated_at")
     private Date updatedAt;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
     @JsonIgnore
     private List<ProjectTask> projectTasks = new ArrayList<>();
 
+    @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
-
-    private String projectLeader;
-
 
     public Project() {
     }

@@ -10,16 +10,16 @@ import java.util.Date;
 @Entity
 public class ProjectTask {
 
+    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
     @Column(name = "project_sequence", updatable = false, unique = true)
     private String projectSequence;
 
-    @NotBlank(message = "Please include a project summary")
     @Column(name = "summary")
+    @NotBlank(message = "Please include a project summary")
     private String summary;
 
     @Column(name = "acceptance_criteria")
@@ -31,8 +31,8 @@ public class ProjectTask {
     @Column(name = "priority")
     private Integer priority;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "due_date")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
 
     // many to one with project
@@ -45,12 +45,12 @@ public class ProjectTask {
     @Column(updatable = false)
     private String projectIdentifier;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "created_at")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "updated_at")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
 
     public ProjectTask() {
